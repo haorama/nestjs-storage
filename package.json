@@ -2,7 +2,8 @@
   "name": "@haorama/nestjs-storage",
   "version": "0.0.1",
   "description": "NESTJS Storage Manager based on Flydrive",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint \"lib/**/*.ts\" --fix",
     "build": "rimraf -rf dist && tsc -p tsconfig.json"
