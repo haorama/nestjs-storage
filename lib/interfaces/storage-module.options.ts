@@ -11,7 +11,7 @@ export interface Driver {
 }
 
 export interface StorageModuleOptions {
-  config?: StorageManagerConfig;
+  config: StorageManagerConfig;
   drivers?: Driver[];
 }
 
