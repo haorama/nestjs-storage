@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "target": "es2017",
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "rootDir": "lib",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ]
+  },
+  "include": ["lib/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "excludeDirectories": ["**/node_modules", "_build"],
+    "excludeFiles": ["build/fileWhichChangesOfent.ts"]
+  }
+}
