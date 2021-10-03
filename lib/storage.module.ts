@@ -12,7 +12,9 @@ export class StorageModule {
   static forRoot(options: StorageModuleOptions): DynamicModule {
     const provider: Provider = {
       provide: StorageManager,
-      useValue: new StorageManager(options.config),
+      useFactory: () => {
+        return this.createDrivers(options);
+      }
     };
 
     return {
@@ -28,15 +30,7 @@ export class StorageModule {
       provide: StorageManager,
       inject: [STORAGE_MODULE_OPTIONS],
       useFactory: (options: StorageModuleOptions) => {
-        const storage = new StorageManager(options.config);
-
-        if (options.drivers) {
-          options.drivers.map((driver) => {
-            storage.registerDriver(driver.name, driver.driver);
-          });
-        }
-
-        return storage;
+        return this.createDrivers(options);
       },
     };
 
@@ -88,5 +82,17 @@ export class StorageModule {
       useFactory: (optionsFactory: StorageOptionsFactory) =>
         optionsFactory.createOptions(),
     };
+  }
+
+  private static createDrivers(options: StorageModuleOptions) {
+    const storage = new StorageManager(options.config);
+
+    if (options.drivers) {
+      options.drivers.map((driver) => {
+        storage.registerDriver(driver.name, driver.driver);
+      });
+    }
+
+    return storage;
   }
 }
